@@ -27,7 +27,7 @@
 * Open up your terminal (bash)
 + Run the following commands in the terminal:
     * cd ~/workspace
-    * git remote add class https://github.com/PA2SP17/pa2sp17.git
+    * git remote add class https://github.com/PA2FA17/pa2fa17.git
 
 ### How to get new files from me into the repository if you have done the above ###
 
