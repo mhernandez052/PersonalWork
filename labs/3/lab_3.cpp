@@ -1,6 +1,6 @@
 /*
  * Name        : lab_3.cpp
- * Author      : FILL IN
+ * Author      : Martin Hernandez
  * Description : Using branching statements, looping statements and string and
  *               character functions complete the functions
  */
@@ -64,9 +64,36 @@ int main() {
  * @return string - The output string specified in the documentation above
  */
 string Goldilocks(string item, int number) {
-  // CODE HERE
-}
-
+  if (item  ==  "porridge" && number == 1) {
+    return "This porridge is too hot";
+  }
+  if (item  ==  "porridge" && number == 2) {
+    return "This porridge is too cold";
+  }
+  if (item  ==  "porridge"&& number == 3) {
+    return "This porridge is just right";
+  }
+  if (item == "chair"&& number == 1) {
+    return "This chair is too big";
+  }
+  if (item == "chair"&& number == 2) {
+    return "This chair is too small";
+  }
+  if (item == "chair"&& number == 3) {
+    return "This chair is just right";
+  }
+  if (item == "bed"&& number == 1) {
+    return "This bed is too hard";
+  }
+  if (item == "bed"&& number == 2) {
+    return "This bed is too small";
+  }
+  if (item == "bed"&& number == 3) {
+    return "This bed is just right";
+  } else {
+    return "This bed is just right";
+  }
+  }
 /*
  * Compute the outcome of a round of a rock-scissor-paper game. Lowercase or
  * uppercase values for player_one and player_two arguments are acceptable.
@@ -82,8 +109,35 @@ string Goldilocks(string item, int number) {
 int RockScissorPaper(char player_one, char player_two) {
   // YOU MUST USE A SWITCH IN THIS FUNCTION
   // CODE HERE
+  player_one = toupper(player_one);
+  player_two = toupper(player_two);
+  switch (player_one) {
+    case 'R':
+      if (player_two ==  'S')
+        return 1;
+      if ( player_two ==  'P')
+        return 2;
+      if (player_two ==  'R')
+        return 3;
+      break;
+    case 'S':
+      if (player_two == 'R')
+        return 2;
+      if (player_two == 'S')
+        return 3;
+      if (player_two == 'P' )
+        return 1;
+      break;
+    case 'P':
+      if ( player_two ==  'R')
+       return 1;
+      if ( player_two ==  'S')
+        return 2;
+      if ( player_two ==  'P')
+       return 3;
+      break;
+  }
 }
-
 /*
  * Return a string that contains a character (taken from the parameter
  * c) and its ASCII integer value. For example, If the char passed in is 'A',
@@ -95,28 +149,32 @@ int RockScissorPaper(char player_one, char player_two) {
  */
 string CharWithAsciiValueAsString(char character) {
   // CODE HERE
-
-  // HINT: try a stringstream here
+stringstream ss;
+ss <<character<< " " <<static_cast <int>(character);
+return ss.str();
 }
-
 /*
  * Return the input string with all characters converted to lowercase.
  * @param string input - The string that will be converted to all lowercase
  * @return string - a string containing the converted input string
  */
 string ToLower(string input) {
-  // CODE HERE
+for(unsigned int i = 0; i < input.size(); i++) {
+  input.at(i) = tolower(input.at(i));
 }
-
+  return input;
+}
 /*
  * Return the input string with all characters converted to uppercase.
  * @param string input - The string that will be converted to all uppercase
  * @return string - a string containing the converted input string
  */
 string ToUpper(string input) {
-  // CODE HERE
+for (unsigned int i = 0; i < input.size(); i++) {
+  input.at(i) = toupper(input.at(i));
 }
-
+  return input;
+}
 /*
  * Return the character from the input string at index char_index.
  * @param string input - The string from which the character will be taken
@@ -127,9 +185,9 @@ string ToUpper(string input) {
  *                outside the range of the string. The null character is '\0'
  */
 char GetCharacter(string input, int char_index) {
-  // CODE HERE
+  if (char_index >= 0 && char_index < input.size())
+    return input.at(char_index);
 }
-
 // For testing (DO NOT ALTER)
 void UnitTest() {
   cout << string(40, '-') << endl;
@@ -140,64 +198,65 @@ void UnitTest() {
 
   yours = Goldilocks("porridge", 2);
   actual = "This porridge is too cold";
-  Test(yours == actual, __LINE__, "Goldilocks(\"porridge\", 2)", yours, actual);
+  Test(yours  ==  actual, __LINE__, "Goldilocks(\"porridge\", 2)", yours,
+  actual);
 
   yours = Goldilocks("chair", 3);
   actual = "This chair is just right";
-  Test(yours == actual, __LINE__, "Goldilocks(\"chair\", 3)", yours, actual);
+  Test(yours  ==  actual, __LINE__, "Goldilocks(\"chair\", 3)", yours, actual);
 
   yours = Goldilocks("bed", 1);
   actual = "This bed is too hard";
-  Test(yours == actual, __LINE__, "Goldilocks(\"bed\", 1)", yours, actual);
+  Test(yours  ==  actual, __LINE__, "Goldilocks(\"bed\", 1)", yours, actual);
 
-  Test(RockScissorPaper('r', 'S') == 1, __LINE__,
+  Test(RockScissorPaper('r', 'S')  ==  1, __LINE__,
        "RockScissorPaper ('r', 'S')");
 
-  Test(RockScissorPaper('R', 'p') == 2, __LINE__,
+  Test(RockScissorPaper('R', 'p')  ==  2, __LINE__,
        "RockScissorPaper ('R', 'p')");
 
-  Test(RockScissorPaper('S', 'P') == 1, __LINE__,
+  Test(RockScissorPaper('S', 'P')  ==  1, __LINE__,
        "RockScissorPaper ('S', 'P')");
 
-  Test(RockScissorPaper('r', 'r') == 3, __LINE__,
+  Test(RockScissorPaper('r', 'r')  ==  3, __LINE__,
        "RockScissorPaper ('r', 'r')");
 
   yours = CharWithAsciiValueAsString('Z');
   actual = "Z 90";
-  Test(yours == actual, __LINE__, "CharWithAsciiValueAsString('Z')", yours,
+  Test(yours  ==  actual, __LINE__, "CharWithAsciiValueAsString('Z')", yours,
        actual);
 
   yours = CharWithAsciiValueAsString('a');
   actual = "a 97";
-  Test(yours == actual, __LINE__, "CharWithAsciiValueAsString('a')", yours,
+  Test(yours  ==  actual, __LINE__, "CharWithAsciiValueAsString('a')", yours,
        actual);
 
   yours = ToLower("HELLO");
   actual = "hello";
-  Test(yours == actual, __LINE__, "ToLower(\"HELLO\")", yours, actual);
+  Test(yours  ==  actual, __LINE__, "ToLower(\"HELLO\")", yours, actual);
 
   yours = ToLower("gOOdbYe");
   actual = "goodbye";
-  Test(yours == actual, __LINE__, "ToLower(\"gOOdbYe\")", yours, actual);
+  Test(yours  ==  actual, __LINE__, "ToLower(\"gOOdbYe\")", yours, actual);
 
   yours = ToUpper("hello");
   actual = "HELLO";
-  Test(yours == actual, __LINE__, "ToUpper(\"hello\")", yours, actual);
+  Test(yours  ==  actual, __LINE__, "ToUpper(\"hello\")", yours, actual);
 
   yours = ToUpper("gOOdbYe");
   actual = "GOODBYE";
-  Test(yours == actual, __LINE__, "ToUpper(\"gOOdbYe\")", yours, actual);
+  Test(yours  ==  actual, __LINE__, "ToUpper(\"gOOdbYe\")", yours, actual);
 
-  Test(GetCharacter("amazing", 3) == 'z', __LINE__,
+  Test(GetCharacter("amazing", 3)  ==  'z', __LINE__,
        "GetCharacter(\"amazing\", 3)");
 
-  Test(GetCharacter("hooray!", 6) == '!', __LINE__,
+  Test(GetCharacter("hooray!", 6)  ==  '!', __LINE__,
        "GetCharacter(\"hooray!\", 6)");
 
-  Test(GetCharacter("toobig", 10) == '\0', __LINE__,
+  Test(GetCharacter("toobig", 10)  ==  '\0', __LINE__,
        "GetCharacter(\"toobig\", 10)");
 
-  Test(GetCharacter("toosmall", -10) == '\0', __LINE__,
+  Test(GetCharacter("toosmall", -10)  ==  '\0', __LINE__,
        "GetCharacter(\"toosmall\", -10)");
 
   cout << string(40, '-') << endl;
