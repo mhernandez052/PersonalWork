@@ -1,6 +1,6 @@
 /*
  * Name        : lab_4.cpp
- * Author      : FILL IN
+ * Author      : Martin Hernandez
  * Description : Use branching statements, looping statements and string and
  *               character functions to complete the functions
  */
@@ -8,7 +8,6 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
-#include <iostream>
 #include <sstream>
 using std::cin;
 using std::cout;
@@ -43,7 +42,7 @@ int main() {
   string input;
   cout << "[1] Do interactive test, [2] Skip to unit test: ";
   getline(cin, input);
-  if (StringToInt(input) == 1)
+  if (StringToInt(input)  ==  1)
     InteractiveTest();
 
   UnitTest();
@@ -65,9 +64,10 @@ int main() {
  *                  floating-point value
  */
 string MakeString(string label, double value, char separator) {
-  // CODE HERE
+  stringstream ss;
+  ss << label << " " << separator << " " << value;
+  return ss.str();
 }
-
 /*
  * Useful when accepting input from stdin using the getline function.
  * Return the first character of a length 1 string. If the value is of
@@ -77,9 +77,12 @@ string MakeString(string label, double value, char separator) {
  *                when value is length 0 or value is length > 1
  */
 char StringToChar(string value) {
-  // CODE HERE
+  if (value.size()   ==   0 || value.size() > 1) {
+    return '\0';
+  } else {
+    return value.at(0);
+  }
 }
-
 /*
  * Useful when accepting input from stdin using the getline function.
  * Convert a string containing an expected integer value (such as a string
@@ -90,19 +93,16 @@ char StringToChar(string value) {
  * @return int - An integer representing the value, or 0 on failure
  */
 int StringToInt(string value) {
-  // THIS FUNCTION PROVIDED AS AN EXAMPLE
+  // THIS FUNCTION PROVIDED AS AN EXAMPLE // don't add to IT
   int ivalue = 0;
   stringstream converter(value);
   converter.exceptions(ios_base::failbit);
-
   try {
     converter >> ivalue;
   } catch (ios_base::failure f) {
   }
-
   return ivalue;
 }
-
 /*
  * Useful when accepting input from stdin using the getline function.
  * Convert a string containing an expected floating-point value (such as a
@@ -113,9 +113,15 @@ int StringToInt(string value) {
  * @return double - A double representing the value, or 0 on failure
  */
 double StringToDouble(string value) {
-  // CODE HERE
+  double ivalue = 0;
+  stringstream converter(value);
+  converter.exceptions(ios_base::failbit);
+  try {
+    converter >> ivalue;
+  } catch (ios_base::failure f) {
+  }
+  return ivalue;
 }
-
 /*
  * Useful when accepting input from stdin using the getline function.
  * Convert a string containing an boolean value (such as a string captured from
@@ -128,9 +134,15 @@ double StringToDouble(string value) {
  *                Return false on anything else.
  */
 bool StringToBool(string value) {
-  // CODE HERE
+  // CODE HERE // test characer, don't need string stream
+  if (value.size() == 0) {
+    return false;
+  } else if (value.at(0) == 'T'|| value.at(0) == 't') {
+    return true;
+  } else {
+    return false;
+  }
 }
-
 // For testing (DO NOT ALTER)
 void InteractiveTest() {
   cout << "\nSTARTING INTERACTIVE TEST\n\n";
@@ -145,9 +157,9 @@ void InteractiveTest() {
     cout << "Enter a char ('z' to stop interactive test): ";
     getline(cin, input);
     c = StringToChar(input);
-    if (c == '\0')
+    if (c  ==  '\0')
       cout << input << " not a valid char\n";
-    else if (c == 'z')
+    else if (c  ==  'z')
       break;
     else
       cout << "Char input: " << c << endl;
@@ -181,24 +193,24 @@ void UnitTest() {
   string yours = "", actual = "";
 
   // Tests
-  Test(MakeString("Temperature", 42.6, ':') == "Temperature : 42.6", __LINE__,
+  Test(MakeString("Temperature", 42.6, ':')  ==  "Temperature : 42.6", __LINE__,
        "MakeString(\"Temperature\", 42.6, ':')");
-  Test(MakeString("", 75, ',') == " , 75", __LINE__,
+  Test(MakeString("", 75, ',')  ==  " , 75", __LINE__,
        "MakeString(\"\", 75, ',')");
-  Test(MakeString("Total", 100.05, '=') == "Total = 100.05", __LINE__,
+  Test(MakeString("Total", 100.05, '=')  ==  "Total = 100.05", __LINE__,
        "MakeString(\"Total\", 100.05, '=')");
-  Test(StringToChar("") == '\0', __LINE__, "StringToChar(\"\")");
-  Test(StringToChar("yn") == '\0', __LINE__, "StringToChar(\"yn\")");
-  Test(StringToChar("X") == 'X', __LINE__, "StringToChar(\"X\")");
-  Test(StringToInt("42") == 42, __LINE__, "StringToInt(\"42\")");
-  Test(StringToInt("hello") == 0, __LINE__, "StringToInt(\"hello\")");
-  Test(StringToInt("") == 0, __LINE__, "StringToInt(\"\")");
-  Test(StringToDouble("") == 0, __LINE__, "StringToDouble(\"\")");
-  Test(StringToDouble("3.14") == 3.14, __LINE__, "StringToDouble(\"3.14\")");
-  Test(StringToDouble("hello") == 0, __LINE__, "StringToDouble(\"hello\")");
-  Test(StringToBool("") == false, __LINE__, "StringToBool(\"\")");
-  Test(StringToBool("TrUe") == true, __LINE__, "StringToBool(\"TrUe\")");
-  Test(StringToBool("FALSE") == false, __LINE__, "StringToBool(\"FALSE\")");
+  Test(StringToChar("")  ==  '\0', __LINE__, "StringToChar(\"\")");
+  Test(StringToChar("yn")  ==  '\0', __LINE__, "StringToChar(\"yn\")");
+  Test(StringToChar("X")  ==  'X', __LINE__, "StringToChar(\"X\")");
+  Test(StringToInt("42")  ==  42, __LINE__, "StringToInt(\"42\")");
+  Test(StringToInt("hello")  ==  0, __LINE__, "StringToInt(\"hello\")");
+  Test(StringToInt("")  ==  0, __LINE__, "StringToInt(\"\")");
+  Test(StringToDouble("")  ==  0, __LINE__, "StringToDouble(\"\")");
+  Test(StringToDouble("3.14")  ==  3.14, __LINE__, "StringToDouble(\"3.14\")");
+  Test(StringToDouble("hello")  ==  0, __LINE__, "StringToDouble(\"hello\")");
+  Test(StringToBool("")  ==  false, __LINE__, "StringToBool(\"\")");
+  Test(StringToBool("TrUe")  ==  true, __LINE__, "StringToBool(\"TrUe\")");
+  Test(StringToBool("FALSE")  ==  false, __LINE__, "StringToBool(\"FALSE\")");
 
   cout << string(40, '-') << endl;
   cout << "Passed: " << ut_passed << " / " << ut_total << endl;
