@@ -13,6 +13,8 @@ using std::cin;
 using std::cout;
 using std::endl;
 using std::string;
+using std::stringstream;
+using std::boolalpha;
 
 /*
  * function name: Hello
@@ -23,6 +25,7 @@ using std::string;
  * Display "Hello world!" to stdout (no newline character after)
  */
 // CODE HERE (FUNCTION PROTOTYPE)
+void Hello();
 
 /*
  * function name: PrintMessage
@@ -33,6 +36,7 @@ using std::string;
  * Display message to stdout (no newline character after)
  */
 // CODE HERE (FUNCTION PROTOTYPE)
+void PrintMessage(string& message);
 
 /*
  * function name: GetAnswer
@@ -43,7 +47,7 @@ using std::string;
  * Return the value 42
  */
 // CODE HERE (FUNCTION PROTOTYPE)
-
+int GetAnswer();
 /*
  * function name: FindLarger
  * parameters: int (const call-by-reference), int (const call-by-reference)
@@ -54,9 +58,9 @@ using std::string;
  * if the values are equivalent.
  */
 // CODE HERE (FUNCTION PROTOTYPE)
-
+int FindLarger(const int& kInput, const int& kCompare);
 /*
- * function name: GetStats
+ * function name: GetStatsint 
  * parameters: string (const call-by-reference), int (call-by-reference),
  *             int (call-by-reference)
  * default arguments: none
@@ -68,7 +72,7 @@ using std::string;
  * characters in the first parameter (string)
  */
 // CODE HERE (FUNCTION PROTOTYPE)
-
+int GetStats(const string& input, int& nUpper, int& nLower);
 /*
  * function name: BuildMessage
  * parameters: string (const call-by-reference), bool (const call-by-reference)
@@ -82,7 +86,7 @@ using std::string;
  * "Message: empty".
  */
 // CODE HERE (FUNCTION PROTOTYPE)
-
+string BuildMessage(const string& kInput = "", const bool& kCapitalize = false);
 
 // For testing (DO NOT ALTER)
 #include <cctype>
@@ -103,8 +107,59 @@ int main() {
 }
 
 // CODE HERE (FUNCTION DEFINITIONS)
+void Hello() {
+  cout << "Hello world!";
+}
 
+void PrintMessage(const string& message) {
+  cout << message;
+}
 
+int GetAnswer() {
+  return 42;
+}
+
+int FindLarger(const int& kInput, const int& kCompare ) {
+  if (kInput == kCompare) {
+    return kInput;
+  } else if (kInput > kCompare) {
+    return kInput;
+  } else if (kInput < kCompare) {
+    return kCompare;
+  }
+  return 0;
+}
+
+int GetStats(const string& input, int& nUpper, int& nLower) {
+  nUpper = 0;
+  nLower = 0;
+  for (unsigned int i = 0; i < input.size(); i++) {
+    if (isupper(input.at(i))) {
+      nUpper++;
+    } else if (islower(input.at(i))) {
+      nLower++;
+    }
+  }
+    return input.size();
+}
+
+string BuildMessage(const string& kInput, const bool& kCapitalize) {
+stringstream ss;
+  if (kInput.size() == 0) {
+    ss << "Message: empty";
+    return ss.str();
+  } else if (kCapitalize == true) {
+    ss << "Message: ";
+    for (unsigned int i = 0; i < kInput.size(); i++) {
+      ss << static_cast<char>(toupper(kInput.at(i)));
+    }
+    return ss.str();
+  } else if (kCapitalize == false) {
+    ss << "Message: "<< kInput;
+    return ss.str();
+  }
+  return 0;
+}
 // For testing (DO NOT ALTER)
 void UnitTest() {
   cout << string(40, '-') << endl;
