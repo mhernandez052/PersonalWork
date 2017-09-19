@@ -59,13 +59,13 @@ void MakeChange(int initial_value, int &quarters, int &dimes, int &nickels,
                 int &pennies) {
   quarters = initial_value/25;
   cout << "This many quarters: " << quarters << endl;
-  initial_value% = 25;
+  initial_value = initial_value % 25;
   dimes = initial_value / 10;
   cout << "This many dimes: " << dimes << endl;
-  initial_value% = 10;
+  initial_value = initial_value % 10;
   nickels = initial_value / 5;
   cout << "This many nickels: " << nickels << endl;
-  initial_value% = 5;
+  initial_value =initial_value % 5;
   pennies = initial_value;
   cout << "This many pennies: " << initial_value << endl;
 }
