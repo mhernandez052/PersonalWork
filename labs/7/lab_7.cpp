@@ -1,6 +1,6 @@
 /*
  * Name        : lab_7.cpp
- * Author      : FILL IN
+ * Author      : Martin Hernandez
  * Description : Working with File I/O
  */
 #include <fstream>
@@ -58,6 +58,34 @@ int main() {
 
 // CODE HERE -- FUNCTION DEFINITION
 
+bool ProcessFile(string filename) {
+    ifstream fin(filename.c_str());
+    string str;
+    if (!fin) {
+      return false;
+    }
+  while (!(fin.eof())) {
+    getline(fin, str);
+    if (str == "10") {
+      OnTen();
+    } else if (str == "20") {
+      OnTwenty();
+    } else if (str == "30") {
+      OnThirty();
+    } else if (str == "40") {
+      OnForty();
+    } else if (str == "50") {
+      OnFifty();
+    } else if ( fin.eof()){
+      return true;
+    } else {
+      OnError();
+    }
+  }
+  
+  fin.close();
+  return 0;
+}
 // For testing (DO NOT ALTER)
 void UnitTest() {
   cout << string(40, '-') << endl;

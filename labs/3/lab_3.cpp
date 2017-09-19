@@ -137,6 +137,7 @@ int RockScissorPaper(char player_one, char player_two) {
        return 3;
       break;
   }
+  return 0;
 }
 /*
  * Return a string that contains a character (taken from the parameter
@@ -185,8 +186,10 @@ for (unsigned int i = 0; i < input.size(); i++) {
  *                outside the range of the string. The null character is '\0'
  */
 char GetCharacter(string input, int char_index) {
-  if (char_index >= 0 && char_index < input.size())
+  int foo = input.size();
+  if (char_index >= 0 && char_index < foo)
     return input.at(char_index);
+    return 0;
 }
 // For testing (DO NOT ALTER)
 void UnitTest() {
