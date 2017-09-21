@@ -1,6 +1,6 @@
 /*
  * Name        : lab_9.cpp
- * Author      : FILL IN
+ * Author      : Martin Hernandez
  * Description : Working with Classes
  */
 #include <iostream>
@@ -106,14 +106,54 @@ int main() {
 }
 
 // CODE HERE -- CLASS DEFINITION
+void Spaceship:: set_name(string name) {
+  name_ = name;
+}
+void Spaceship::set_top_speed(double top_speed) {
+  top_speed_ = top_speed;
+}
 
+void Spaceship::set_fuel_source(string fuel_source) {
+  fuel_source_ = fuel_source;
+}
+void Spaceship::set_crew_capacity(int crew_capacity) {
+  crew_capacity_ = crew_capacity;
+}
+string Spaceship::name() const {
+  return name_;
+}
+double Spaceship::top_speed() const {
+  return top_speed_;
+}
+string Spaceship::fuel_source() const {
+  return fuel_source_;
+}
+int Spaceship::crew_capacity() const {
+  return crew_capacity_;
+}
+string Spaceship::ToString() const {
+  stringstream ss;
+  ss.setf(std::ios::fixed|std::ios::showpoint);
+  ss.precision(2);
+  ss  <<  name()  <<  endl  <<  "Top Speed:";
+  ss.width(10);
+  ss  <<  "Warp "  <<  top_speed() <<  endl;
+  ss.unsetf(std::ios::fixed);
+  ss <<  "Fuel Source:";
+  ss.width(9);
+  ss << fuel_source() << endl;
+  ss << "Crew Capacity:";
+  ss.width(5);
+  ss << crew_capacity();
+return ss.str();
+}
 
 // For testing (DO NOT ALTER)
 void UnitTest() {
-  cout << string(40, '-') << endl;
-  cout << "UNIT TEST:\n" << string(40, '-') << endl;
+  cout  <<  string(40, '-')  <<  endl;
+  cout  <<  "UNIT TEST:\n"  <<  string(40, '-')  <<  endl;
   if (num_of_tests != 0)
-    cout << "Total Number of Tests: " << num_of_tests << endl;
+    cout  <<  "Total Number of Tests: "  <<  num_of_tests  <<  endl;
   string yours = "", actual = "";
   // Tests
   Spaceship enterprise;
@@ -143,17 +183,17 @@ void UnitTest() {
       "Fuel Source:   Plasma\n"
       "Crew Capacity: 5000";
   Test(yours == actual, __LINE__, "ToString()", yours, actual);
-  cout << "\n" << enterprise.ToString() << "\n\n";
+  cout  <<  "\n"  <<  enterprise.ToString()  <<  "\n\n";
 
-  cout << string(40, '-') << endl;
-  cout << "Passed: " << ut_passed << " / " << ut_total << endl;
+  cout  <<  string(40, '-')  <<  endl;
+  cout  <<  "Passed: "  <<  ut_passed  <<  " / "  <<  ut_total  <<  endl;
   OutputFailedTests();
-  cout << string(40, '-') << endl;
-  cout << "END OF UNIT TEST!\n";
-  cout << string(40, '-') << endl;
-  cout << "Be sure to run 'make style' to check for any style errors.\n"
-       << "Please note that 'make style' does NOT check variable names or"
-       << " indentation" << endl << endl;
+  cout  <<  string(40, '-')  <<  endl;
+  cout  <<  "END OF UNIT TEST!\n";
+  cout  <<  string(40, '-')  <<  endl;
+  cout  <<  "Be sure to run 'make style' to check for any style errors.\n"
+        <<  "Please note that 'make style' does NOT check variable names or"
+        <<  " indentation"  <<  endl  <<  endl;
 }
 
 // For testing (DO NOT ALTER)
@@ -161,28 +201,28 @@ void Test(bool test, int line_number, string more_info, string yours,
           string actual) {
   ut_total++;
   if (test) {
-    cout << "PASSED TEST ";
+    cout  <<  "PASSED TEST ";
     ut_passed++;
   } else {
-    cout << "FAILED TEST ";
+    cout  <<  "FAILED TEST ";
     ut_failed++;
     failed_tests.push_back(ut_total);
   }
-  cout << ut_total << " " << more_info << "!" << endl;
+  cout  <<  ut_total  <<  " "  <<  more_info  <<  "!"  <<  endl;
   if (!test) {
     if (yours != "!")
-      cout << "Yours:  \"" << yours << '"' << endl;
+      cout  <<  "Yours:  \""  <<  yours  <<  '"'  <<  endl;
     if (actual != "!")
-      cout << "Actual: \"" << actual << '"' << endl;
-    cout << "  Check Line " << line_number << " for more info" << endl;
+      cout  <<  "Actual: \""  <<  actual  <<  '"'  <<  endl;
+    cout  <<  "  Check Line "  <<  line_number  <<  " for more info"  <<  endl;
   }
 }
 
 void OutputFailedTests() {
   if (failed_tests.size()) {
-    cout << "Failed test number(s): ";
+    cout  <<  "Failed test number(s): ";
     for (unsigned int i = 0; i < failed_tests.size() - 1; i++)
-      cout << failed_tests.at(i) << ", ";
-    cout << failed_tests.at(failed_tests.size() - 1) << endl;
+      cout  <<  failed_tests.at(i)  <<  ", ";
+    cout  <<  failed_tests.at(failed_tests.size() - 1)  <<  endl;
   }
 }
