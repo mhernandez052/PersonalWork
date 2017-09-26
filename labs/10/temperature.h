@@ -1,6 +1,6 @@
 /*
  * Name        : temperature.h
- * Author      : FILL IN
+ * Author      : Martin Hernandez
  * Description : Class Header File
  */
 
@@ -10,7 +10,8 @@ using std::string;
 using std::stringstream;
 
 // ADD HEADER GUARD HERE
-
+#ifndef HERNANDEZ_TEMPERATURE_H
+#define HERNANDEZ_TEMPERATURE_H
 
 /*
  * Class Temperature.
@@ -112,5 +113,5 @@ class Temperature {
  private:
   double kelvin_;
 };
-
 // REST OF HEADER GUARD GOES HERE
+#endif /* HERNANDEZ_TEMPERATURE_H */
