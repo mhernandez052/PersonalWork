@@ -48,13 +48,9 @@ int main(int argc, char *argv[]) {
     while (!(fin.eof())) {
       getline(fin, str);
       cout << str << endl;
-      if (fin.eof()) {
-        break;
-      }
     }
     fin.close();
     }
   }
   }
 }
-
