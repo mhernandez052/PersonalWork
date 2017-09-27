@@ -10,17 +10,6 @@ Temperature::Temperature(double kelvin) {
 }
 
 Temperature::Temperature(double temp, char unit) {
-/*
-   * Constructor #3.
-   * Converts the supplied temperature to kelvin and internally stores it.
-   * The temperature's unit will be provided in the second argument.
-   * If the second argument is not value (i.e. not 'F' or 'C') assume the
-   * temperature is in kelvin
-   * @param double temp - The value to set the internal kelvin to once
-   *                    - converted.
-   * @param char unit - The type of unit temp is. Will be either 'F' or 'C',
-   *                    case-insensitive
-   */
   if (unit== 'f' || unit == 'F') {
     SetTempFromFahrenheit(temp);
   } else if (unit == 'c' || unit == 'C') {
@@ -53,21 +42,6 @@ double Temperature::GetTempAsFahrenheit() const {
   return tempF;
 }
 string Temperature::ToString(char unit) const {
-    /*
-   * Get a string representation of the temperature.
-   * The string will be formatted as:
-   * "TEMP UNIT"
-   * where TEMP is the temperature to 2 decimal places and UNIT is either
-   * "Kelvin", "Celsius", or "Fahrenheit".
-   * The conversion to perform is denoted by the parameter.
-   * If the unit given through the argument is invalid, set the string to:
-   * "Invalid Unit"
-   * @uses stringstream
-   * @param char unit - The conversion to perform, either 'K', 'C' or 'F',
-   *                    defaults to 'K' and is case-insensitive
-   * @return string - A string representation of the temperature or invalid if
-   *                  the provided unit is not recognized
-   */
   stringstream ss;
   ss.setf(std::ios::fixed|std::ios::showpoint);
   ss.precision(2);
