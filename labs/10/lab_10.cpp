@@ -70,17 +70,17 @@ void UnitTest() {
   Temperature temp4(5, 'f');
   Test(
       temp4.GetTempAsKelvin() >= 258.14
-          && temp4.GetTempAsFahrenheit() <= 258.16,
+          && temp4.GetTempAsKelvin()) <= 258.16,
       __LINE__, "Constructor(5, 'f') / GetTempAsKelvin()");
   Temperature temp5(5, 'C');
   Test(
       temp5.GetTempAsKelvin() >= 278.14
-          && temp5.GetTempAsFahrenheit() <= 278.16,
+          && temp5.GetTempAsKelvin() <= 278.16,
       __LINE__, "Constructor(5, 'C') / GetTempAsKelvin()");
   Temperature temp6(5, 'c');
   Test(
       temp6.GetTempAsKelvin() >= 278.14
-          && temp6.GetTempAsFahrenheit() <= 278.16,
+          && temp6.GetTempAsKelvin() <= 278.16,
       __LINE__, "Constructor(5, 'c') / GetTempAsKelvin()");
   Temperature temp7(5, 'K');
   Test(temp7.GetTempAsKelvin() == 5, __LINE__,

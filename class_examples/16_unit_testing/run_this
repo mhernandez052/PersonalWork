@@ -1,12 +1,9 @@
 printf "\033c"
 PS3='Please enter your choice: '
-ONE='Run Overloaded Operators'
-ONE_FILE='binary_unary_overload'
-TWO='Run Overloading with Member Functions'
-TWO_FILE='member_overload'
-THREE='Run Overloading with Friend Functions'
-THREE_FILE='friend_functions'
-options=("Compile All" "$ONE" "$TWO" "$THREE" "Clean up Executables" "Quit")
+ONE='Run Assert'
+ONE_FILE='assert'
+
+options=("Compile All" "$ONE" "Clean up Executables" "Quit")
 select opt in "${options[@]}"
 do
     case $opt in
@@ -22,22 +19,6 @@ do
             make $ONE_FILE
 			echo -e "\nOutput\n----------------"
             ./${ONE_FILE}.run
-            break
-            ;;
-        "$TWO")
-		    printf "\033c"
-			echo -e "Compiling $TWO\n---------------"
-            make $TWO_FILE
-			echo -e "\nOutput\n----------------"
-            ./${TWO_FILE}.run
-            break
-            ;;
-        "$THREE")
-		    printf "\033c"
-			echo -e "Compiling $THREE\n---------------"
-            make $THREE_FILE
-			echo -e "\nOutput\n----------------"
-            ./${THREE_FILE}.run
             break
             ;;
         "Clean up Executables")
