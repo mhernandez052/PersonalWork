@@ -21,3 +21,45 @@ const Money operator +(const Money& amount1, const Money& amount2) {
 }
 
 // CLASS FUNCTION DEFINITIONS GO HERE
+const Money operator -(const Money& amount1, const Money& amount2) {
+  int all_cents1 = amount1.cents_ + amount1.dollars_ * 100;
+  int all_cents2 = amount2.cents_ + amount2.dollars_ * 100;
+  int subtract_all_cents = all_cents1 - all_cents2;
+  int abs_all_cents = abs(subtract_all_cents);
+  int final_dollars = abs_all_cents / 100;
+  int final_cents = abs_all_cents % 100;
+    if (subtract_all_cents < 0) {
+    final_dollars = -final_dollars;
+    final_cents = -final_cents;
+  }
+  return Money(final_dollars, final_cents);
+}
+
+bool operator ==(const Money &amount1, const Money &amount2) {
+  int all_cents1 = amount1.cents_ +  amount1.dollars_ * 100;
+  int all_cents2 = amount2.cents_ + amount2.dollars_ * 100;
+  return all_cents1 == all_cents2;
+}
+
+const Money operator -(const Money &amount) {
+  int negate_all_cents = -(amount.cents_ + amount.dollars_ *100);
+  int final_negate_dollars = negate_all_cents / 100;
+  int final_negate_cents = negate_all_cents % 100;
+return Money (final_negate_dollars, final_negate_cents);
+  }
+
+ostream& operator <<(ostream &out, const Money &amount) {
+  if (amount.cents_ < 0 && amount.dollars_ < 0) {
+    out << "$" << amount.dollars_ << "." << setw(2)<< setfill('0') <<
+    -amount.cents_;
+  return out;
+  } else if (amount.cents_ < 0 && amount.dollars_ == 0) {
+    out << "$-" << amount.dollars_ << "." << setw(2)<< setfill('0') <<
+    -amount.cents_;
+  return out;
+  } else {
+    out << "$" << amount.dollars_ << "." << setw(2)<< setfill('0') <<
+    amount.cents_;
+  return out;
+  }
+}
