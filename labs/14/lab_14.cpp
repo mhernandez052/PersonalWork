@@ -1,6 +1,6 @@
 /*
  * Name        : lab_14.cpp
- * Author      : FILL IN
+ * Author      : Martin Hernandez
  * Description : Working with Bubble and Selection Sort
  */
 #include <iostream>
@@ -68,6 +68,78 @@ int main() {
 }
 
 // CODE HERE -- FUNCTION DEFINITION
+/*
+ * Apply the bubble sort algorithm to sort an array of integers.
+ * @param int[] the_array - The integer array to be sorted
+ * @param unsigned int size - The size of the_array
+ * @return int - The number of passes the algorithm does. In this case "pass" is
+ *               defined as the number of times the outside loop runs. You
+ *               should increment your variable once you enter the outside loop.
+ */
+int BubbleSort(int the_array[], unsigned int size) {
+  int pass = 0;
+  for (int i = (size-1); i > 0 ; i--) {
+    pass++;
+    for (int j = 0; j < i; j++) {
+      if (the_array[j] > the_array[j+1]) {
+        SwapValues(the_array[j], the_array[j+1]);
+      }
+    }
+  }
+  return pass;
+}
+/*
+ * Apply the optimized bubble sort algorithm to sort an array of integers.
+ * @param int[] the_array - The integer array to be sorted
+ * @param unsigned int size - The size of the_array
+ * @return int - The number of passes the algorithm does. In this case "pass" is
+ *               defined as the number of times the outside loop runs. You
+ *               should increment your variable once you enter the outside loop.
+ */
+int OptimizedBubbleSort(int the_array[], unsigned int size) {
+  bool swapped;
+  int pass = 0;;
+  for (int i = (size-1); i > 0 ; i--) {
+    pass = i;
+    swapped = false;
+    for (int j = 0; j < i; j++) {
+      if (the_array[j] > the_array[j+1]) {
+        SwapValues(the_array[j], the_array[j+1]);
+        swapped = true;
+      if (swapped == false) {
+          break;
+        }
+      }
+    }
+  }
+return pass;
+}
+
+/*
+ * Apply the selection sort algorithm to sort an array of integers.
+ * @param int[] the_array - The integer array to be sorted
+ * @param unsigned int size - The size of the_array
+ * @return int - The number of passes the algorithm does. In this case "pass" is
+ *               defined as the number of times the outside loop runs. You
+ *               should increment your variable once you enter the outside loop.
+ */
+int SelectionSort(int the_array[], unsigned int size) {
+  unsigned int smallest;
+  int pass;
+  for (unsigned int i = 0; i < size; i++) {
+    pass++;
+    smallest = i;
+    for (unsigned int j = i+1; j < size; j++) {
+      if (the_array[j] < the_array[smallest]) {
+        smallest = j;
+        }
+      }
+      if (smallest != i) {
+        SwapValues(the_array[i], the_array[smallest]);
+    }
+  }
+  return pass;
+}
 
 
 void SwapValues(int &value_1, int &value_2) {
@@ -76,6 +148,10 @@ void SwapValues(int &value_1, int &value_2) {
     cout << value_1 << " " << value_2 << endl;
   }
   // Code SWAP Algorithm Here
+  int swap;
+  swap = value_1;
+  value_1 = value_2;
+  value_2 = swap;
 }
 
 // For testing (DO NOT ALTER)
