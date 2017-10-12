@@ -68,14 +68,6 @@ int main() {
 }
 
 // CODE HERE -- FUNCTION DEFINITION
-/*
- * Apply the bubble sort algorithm to sort an array of integers.
- * @param int[] the_array - The integer array to be sorted
- * @param unsigned int size - The size of the_array
- * @return int - The number of passes the algorithm does. In this case "pass" is
- *               defined as the number of times the outside loop runs. You
- *               should increment your variable once you enter the outside loop.
- */
 int BubbleSort(int the_array[], unsigned int size) {
   int pass = 0;
   for (int i = (size-1); i > 0 ; i--) {
@@ -88,14 +80,6 @@ int BubbleSort(int the_array[], unsigned int size) {
   }
   return pass;
 }
-/*
- * Apply the optimized bubble sort algorithm to sort an array of integers.
- * @param int[] the_array - The integer array to be sorted
- * @param unsigned int size - The size of the_array
- * @return int - The number of passes the algorithm does. In this case "pass" is
- *               defined as the number of times the outside loop runs. You
- *               should increment your variable once you enter the outside loop.
- */
 int OptimizedBubbleSort(int the_array[], unsigned int size) {
   bool swapped;
   int pass = 0;;
@@ -114,15 +98,6 @@ int OptimizedBubbleSort(int the_array[], unsigned int size) {
   }
 return pass;
 }
-
-/*
- * Apply the selection sort algorithm to sort an array of integers.
- * @param int[] the_array - The integer array to be sorted
- * @param unsigned int size - The size of the_array
- * @return int - The number of passes the algorithm does. In this case "pass" is
- *               defined as the number of times the outside loop runs. You
- *               should increment your variable once you enter the outside loop.
- */
 int SelectionSort(int the_array[], unsigned int size) {
   unsigned int smallest;
   int pass;
@@ -140,7 +115,6 @@ int SelectionSort(int the_array[], unsigned int size) {
   }
   return pass;
 }
-
 
 void SwapValues(int &value_1, int &value_2) {
   // DO NOT ALTER THE NEXT 3 LINES!!!
