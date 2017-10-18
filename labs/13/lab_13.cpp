@@ -127,7 +127,8 @@ bool ReplaceWord(string* the_string, string old_word, string new_word) {
     throw "NULL STRING REFERENCE";
 } else {
     if (((the_string->find(old_word))!= string::npos)) {
-      the_string->replace(the_string->find(old_word), old_word.length(), new_word);
+      the_string->replace(the_string->find(old_word), old_word.length(),
+      new_word);
       return true;
   } else {
       return false;
