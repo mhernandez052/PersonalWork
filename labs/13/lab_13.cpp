@@ -1,6 +1,6 @@
 /*
  * Name        : lab_13.cpp
- * Author      : FILL IN
+ * Author      : Martin Hernandez
  * Description : Working with Pointers and Dynamic Objects
  */
 #include <iostream>
@@ -82,9 +82,58 @@ int main() {
   // This ends program execution
   return 0;
 }
-
 // CODE HERE -- FUNCTION DEFINITION
+string* MakeDynoString(string contents) {
+string* the_string = new string(contents);
+return the_string;
+}
+void ClearDynoString(string *&the_string) {
+  delete the_string;
+  the_string = NULL;
+}
+unsigned int CountChars(string* theString, unsigned int &alpha,
+  unsigned int &num) {
+  alpha = 0;
+  num = 0;
+  if (theString == NULL) {
+    throw "NULL STRING REFERENCE";
+  } else {
+      for (unsigned int i = 0 ; i < theString->length(); i++) {
+        if (isalpha(theString->at(i))) {
+          alpha++;
+        }
+        if (isdigit(theString->at(i))) {
+          num++;
+        }
+        }
+      }
+  return theString->length();
+}
 
+bool FindWord(string *the_string, string the_word) {
+  if (the_string == NULL) {
+    throw "NULL STRING REFERENCE";
+  } else {
+      if (((the_string->find(the_word))!= string::npos)) {
+      return true;
+    } else {
+        return false;
+    }
+  }
+}
+
+bool ReplaceWord(string* the_string, string old_word, string new_word) {
+  if (the_string == NULL) {
+    throw "NULL STRING REFERENCE";
+} else {
+    if (((the_string->find(old_word))!= string::npos)) {
+      the_string->replace(the_string->find(old_word), old_word.length(), new_word);
+      return true;
+  } else {
+      return false;
+    }
+  }
+}
 
 // For testing (DO NOT ALTER)
 void UnitTest() {
@@ -137,7 +186,7 @@ void UnitTest() {
        "ReplaceWord(my_string, \"HELLO\", \"GOODBYE\")");
 
   ClearDynoString(my_string);
-  Test(my_string == NULL, __LINE__, "ClearDynoString(my_string");
+  Test(my_string == NULL, __LINE__, "ClearDynoString(my_string)");
 
   cout << string(40, '-') << endl;
   cout << "Passed: " << ut_passed << " / " << ut_total << endl;
