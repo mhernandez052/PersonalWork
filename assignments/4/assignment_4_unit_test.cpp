@@ -6,7 +6,7 @@
  */
 
 #include "dl_list.h"
- // Double Include to Test for Header Guards
+// Double Include to Test for Header Guards
 #include "dl_list.h"
 #include "dl_node.h"
 #include "dl_node.h"
@@ -64,8 +64,7 @@ void UnitTest() {
   string empty = "List Empty";
   string no_value = "Not Found";
   std::stringstream full_head_list, half_head_list, full_tail_list,
-      half_tail_list;
-  ;
+                    half_tail_list;
   for (int i = 999; i > 0; i--) {
     full_head_list << i << ", ";
     if (i < 500)
