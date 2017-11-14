@@ -26,7 +26,7 @@ class ShoppingList {
   /*
    * Overloaded constructor.
    * Initializes max_items_ to max_items, items_ to size max_items
-   * and item_count to 0.
+   * and item_count_ to 0.
    * @param unsigned int max_items - The desired size of the items_ array
    */
   ShoppingList(unsigned int max_items);
