@@ -1,11 +1,12 @@
 /*
  * Name        : template.cpp
- * Author      : FILL IN
+ * Author      : martin Hernandez
  * Description : Various functions using templates. Please note you can just
  *               write the definitions in here. No need for prototypes.
  */
 #include <string>
 #include <sstream>
+#include <iomanip>
 using std::string;
 using std::stringstream;
 
@@ -25,6 +26,21 @@ using std::stringstream;
  *                  specified separator character
  */
 
+template<typename FAKE>
+string PrepareForDisplay(FAKE values[], unsigned int size, char separator
+  = ',') {
+  stringstream ss;
+  ss.setf(std::ios::showpoint | std::ios::fixed);
+  ss.precision(2);
+  unsigned int i;
+  for (i = 0; i < size - 1; i++) {
+    ss << values[i] << separator;
+  }
+  ss << values[i];
+  ss.unsetf(std::ios::showpoint);
+  return ss.str();
+}
+
 
 /*
  * Function Name: HasValue
@@ -34,7 +50,15 @@ using std::stringstream;
  * @param T value_to_find - The value to search for within the array
  * @return bool - true if value is found in the array, otherwise false
  */
-
+template<typename FAKE1>
+bool HasValue(FAKE1 values[], unsigned int size, FAKE1 value_to_find) {
+  for (unsigned int i = 0; i < size; i++) {
+    if (values[i] == value_to_find) {
+      return true;
+    }
+  }
+  return false;
+}
 
 /*
  * Function Name: ValueAt
@@ -50,7 +74,17 @@ using std::stringstream;
  *               the type and sets error to true. To get a zero representation
  *               you can return T()
  */
-
+template<typename FAKE2>
+FAKE2 ValueAt(FAKE2 values[], unsigned int size, unsigned int
+  index, bool &error) {
+  if (index < size) {
+    error = false;
+    return values[index];
+  } else {
+    error = true;
+    return FAKE2();
+  }
+}
 
 /*
  * Function Name: Sum
@@ -60,7 +94,14 @@ using std::stringstream;
  * @param unsigned int size - The size of the array
  * @return T - The sum of the values in the array
  */
-
+template<typename FAKE3>
+FAKE3 Sum(FAKE3 values[], unsigned int size) {
+  FAKE3 Summation = FAKE3();
+  for (unsigned int i = 0; i < size; i++) {
+    Summation = Summation + values[i];
+  }
+  return Summation;
+}
 
 /*
  * Function Name: SwapValues
@@ -72,4 +113,14 @@ using std::stringstream;
  * @param unsigned int index2 - The position of the second value to be swapped
  * @return bool - true if the swap was successful, otherwise false
  */
-
+template<typename FAKE4>
+bool SwapValues(FAKE4 values[], unsigned int size, unsigned int index1,
+    unsigned int index2) {
+  if (index1 < size && index2 < size) {
+    FAKE4 temp = values[index1];
+    values[index1] = values[index2];
+    values[index2] = temp;
+    return true;
+  }
+  return false;
+}
